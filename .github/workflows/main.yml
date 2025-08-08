@@ -12,15 +12,25 @@ jobs:
         name: Compile instruction PDF
         steps:
           - uses: actions/checkout@v4
-          - name: compile
+
+          - name: compile (zh-Hans)
             uses: dante-ev/latex-action@2024-B
             env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             with:
                 root_file: 'instruction.tex'
                 compiler: xelatex
+
+        #   - name: compile (zh-Hant)
+        #     uses: dante-ev/latex-action@2024-B
+        #     env:
+        #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #     with:
+        #         root_file: 'instruction_zh-Hant.tex'
+        #         compiler: xelatex
+
           - name: upload PDF
             uses: actions/upload-artifact@v4
             with:
-                name: instruction.pdf
-                path: instruction.pdf
+                name: instruction
+                path: instruction*.pdf
